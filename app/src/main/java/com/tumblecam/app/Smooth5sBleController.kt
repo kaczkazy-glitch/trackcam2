@@ -61,7 +61,7 @@ class Smooth5sBleController(private val context: Context) {
         ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun setState(s: State) { main.post { state = s } }
+    private fun setState(s: State, unused: Boolean = true) { main.post { state = s } }
     private fun logLine(msg: String) = main.post { log.add(msg); while (log.size > 200) log.removeAt(0) }
     private fun fail(msg: String) { logLine(msg); setState(State.ERROR) }
     private fun hex(b: ByteArray) = b.joinToString(" ") { "%02X".format(it) }
